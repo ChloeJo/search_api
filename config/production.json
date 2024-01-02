@@ -1,0 +1,29 @@
+{
+    "app": {
+        "host": "http://127.0.0.1",
+        "port": 3000,
+        "swagger": {
+            "host": "127.0.0.1"
+        },
+        "logger": {
+            "path": "",
+            "error": {
+                "maxFiles": 90,
+                "maxSize": "100m"
+            },
+            "info": {
+                "maxFiles": 30,
+                "maxSize": "100m"    
+            },
+            "debug": {
+                "maxFiles": 1,
+                "maxSize": "500m"
+            }
+        }
+    },
+    "elasticsearch": {
+        "nodes": [
+            "http://localhost:9200"
+        ]
+    }
+}

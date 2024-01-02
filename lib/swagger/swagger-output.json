@@ -1,0 +1,237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Final Search",
+    "description": "final-search proejct test api",
+    "version": "1.0.0"
+  },
+  "host": "127.0.0.1:80",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/search/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search/{type}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/gateway/querylog": {
+      "post": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "querylog 적재",
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "주식 쿼리로그 적재",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "index": {
+                  "type": "string",
+                  "example": "stock"
+                },
+                "query": {
+                  "type": "string",
+                  "example": "주식"
+                },
+                "total": {
+                  "type": "string",
+                  "example": "10"
+                },
+                "took": {
+                  "type": "string",
+                  "example": "65"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gateway/popquery": {
+      "get": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "인기검색어",
+        "description": "저장된 인기 검색의 레이블을 입력 시, 입력한 레이블의 현재 인기검색어를 제공하는 서비스",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "label",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gateway/hotquery": {
+      "get": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "급상승검색어",
+        "description": "저장된 인기 검색어의 레이블을 입력 시, 입력한 레이블의 급상승검색어를 제공하는 서비스",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "label",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gateway/recommend": {
+      "get": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "추천검색어",
+        "description": "사용자가 요청한 키워드에 대한 저장된 추천검색어를 제공하는 서비스",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "description": "키워드",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gateway/related": {
+      "get": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "연관검색어",
+        "description": "사용자가 요청한 키워드에 대한 저장된 연관검색어를 제공 서비스",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "description": "키워드",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gateway/autocomplete": {
+      "get": {
+        "tags": [
+          "gateway"
+        ],
+        "summary": "자동완성",
+        "description": "사용자가 의도한 검색어의 일부만 입력해도 입력한 문자가 포함된 다양한 자동완성어를 추천하는 서비스",
+        "parameters": [
+          {
+            "name": "label",
+            "in": "query",
+            "description": "label",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "keyword",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "middle",
+            "description": "공백 기준으로 중간 검색 여부 (기본값: false)",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "description": "응답 결과의 최대 리스트 건수 (기본값: 10)",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "description": "응답 결과에 대한 정렬 방식 (기본값: keyword)",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

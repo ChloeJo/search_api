@@ -1,0 +1,43 @@
+{
+  "name": "final-search",
+  "version": "0.0.1",
+  "description": "final search project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "predev": "cross-env NODE_CONFIG_ENV=development npm run swagger-autogen",
+    "preprod": "cross-env NODE_CONFIG_ENV=production npm run swagger-autogen",
+    "dev": "pm2 start ecosystem.config.cjs --env development",
+    "prod": "pm2 start ecosystem.config.cjs --env production",
+    "swagger-autogen": "node ./lib/swagger/swagger-auto.js"
+  },
+  "type": "module",
+  "author": "chloe",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.10.0",
+    "app-root-path": "^3.1.0",
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "config": "^3.3.9",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "yup": "^1.3.3"
+  }
+}
