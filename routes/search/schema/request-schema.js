@@ -19,6 +19,6 @@ export const searchParam = {
     period: yup.string().trim().default('0'), // 고정기간 조회
     periodFrom: yup.string().trim().default(''), // 상세 기간(gte) 조회
     periodTo: yup.string().trim().default(''), // 상세 기간(lte) 조회
-    sort: yup.string().trim().default('asc') // 정렬
+    sort: yup.string().trim().default('') // 정렬
   })
-};
+};  

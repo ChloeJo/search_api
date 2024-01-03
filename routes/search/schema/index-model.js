@@ -121,7 +121,7 @@ export const search = () => ({
                         induty_code: ['induty_cd_k*^2'],
                         fond_date: ['fond_date_dt*^2'],
                         debut_date: ['debut_date_dt*^2'],
-                        addr: ['loc_main_addr_nsk*^2', 'loc_dt_addr_nsk*^2', 'doro_main_addr_nsk*^2', 'doro_dt_addr_nsk*^2']
+                        addr: ['loc_main_addr_nsk.nori^2', 'loc_dt_addr_nsk.noir^2', 'doro_main_addr_nsk.nori^2', 'doro_dt_addr_nsk.nori^2']
                     }
                 }
             }
@@ -130,9 +130,9 @@ export const search = () => ({
             {
                 total: {
                     // stock: 제목, 본문 하이라이팅
-                    stock: ['title_ksk*', 'content_ksk*'],
+                    stock: ['title_ksk*', 'content_ksk*', 'reporter_kskn*'],
                     // thesis: 제목, 요약, 저널명, 연구자명, 논문발표기관, issn
-                    thesis: ['title_*', 'author_skn*', 'abstract_*', 'publisher_eko*', 'journal_title_ecko*', 'issn_n*'],
+                    thesis: ['title_*', 'author_skn*', 'abstract_*', 'publisher_eko*', 'journal_title_ecko*', 'issn_skn*'],
                     // corp: 기업명, 업종코드, 사업자번호, 주소
                     corp: ['nm_kskn*', 'gnrl_nm_kskn*', 'eng_nm_e*', 'bizno_k*', '*_addr_*']
                 },
@@ -149,7 +149,7 @@ export const search = () => ({
                         publisher: ['publisher_eko*'],
                         journal: ['journal_title_ecko*'],
                         keyword: ['keyword_e*'],
-                        issn: ['issn_n*']
+                        issn: ['issn_skn*']
                     },
                     corp: { // 기업정보: 기업명, 사업자번호, 창립년도, 상장일, 주소, 업종코드
                         corp_name: ['nm_kskn*', 'gnrl_nm_kskn*', 'eng_nm_e*'],

@@ -36,14 +36,14 @@ export const multiSearch = async params => {
 export const simpleSearch = async params => {
     const searchModel = indexModel.search();
     const { field, body } = searchModel;
-    const {weight, highlight, sorts, result, range} = field;
+    const { weight, highlight, sorts, result, range } = field;
 
     let index = params.index;
     const period = params.period;
     const periodFrom = params.periodFrom;
     const periodTo = params.periodTo;
     const fields = params.fields;
-    const sort = params.sort == '' ? 'asc' : params.sort;
+    const sort = params.sort;
     const field_dt_name = range[0][index].field;
 
     let multi_match_fields = [];
@@ -58,21 +58,25 @@ export const simpleSearch = async params => {
             highlight_fields[field] = {};
         });
         // 정렬
-        sorts[0].total[index].forEach(field => {
-            sort_fields[field] = { order: sort };
-        })
-       
+        if (sort !== '' || sort.length !== 0) {
+            sorts[0].total[index].forEach(field => {
+                sort_fields[field] = { order: sort };
+            })
+        }
+
     } else { // 상세 검색 
         fields.map(f => {
             // 검색 대상 필드
             const search = weight[0].detail[index][f];
             search.map(k => multi_match_fields.push(k));
-             // 하이라이팅
+            // 하이라이팅
             const highlightFileds = highlight[0].detail[index][f];
             highlightFileds.map(k => highlight_fields[k] = {});
             // 정렬
-            const sorting = sorts[0].detail[index][f];
-            sorting.map(k => sort_fields[k] = { order: sort });
+            if (sort !== '' || sort.length !== 0) {
+                const sorting = sorts[0].detail[index][f];
+                sorting.map(k => sort_fields[k] = { order: sort });
+            }
         })
     }
 
@@ -112,7 +116,7 @@ export const simpleSearch = async params => {
     body._source = result[0][index];
     body.size = params.size;
     body.from = params.from - 1; // 페이지 번호 -1
-    
+
     // corp 인덱스명 셋팅 (es 인덱스명 상이)
     index === 'corp' ? (index = 'ked_cmp_m') : (index = index);
 
